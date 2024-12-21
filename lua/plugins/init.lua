@@ -24,7 +24,7 @@ local plugins = {
     opts = {},
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require "custom.configs.conform"
+      require "configs.conform"
     end,
   },
   {
