@@ -7,6 +7,7 @@ local plugins = {
         "isort",
         "black",
         "markdownlint",
+	"rust_analyzer"
       },
     },
   },
@@ -260,5 +261,8 @@ local plugins = {
       }
     end,
   },
+  {
+    "simrat39/rust-tools.nvim"
+  }
 }
 return plugins

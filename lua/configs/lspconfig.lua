@@ -21,6 +21,11 @@ lspconfig["pyright"].setup {
   capabilities = capabilities,
 }
 
+lspconfig["rust_analyzer"].setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 lspconfig.nushell.setup {}
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
