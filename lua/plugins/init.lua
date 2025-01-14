@@ -7,7 +7,7 @@ local plugins = {
         "isort",
         "black",
         "markdownlint",
-	"rust_analyzer"
+        "rust_analyzer"
       },
     },
   },
@@ -22,10 +22,22 @@ local plugins = {
   },
   {
     "stevearc/conform.nvim",
-    opts = {},
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require "configs.conform"
+    opts = {
+      formatters_by_ft = {
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        lua = { "stylua" },
+        python = { "black" },
+      },
+      format_on_save = {
+        lsp_fallback = true,
+        timeout_ms = 5000,
+      }
+    },
+    event = { "BufWritePre" },
+    init = function()
+      vim.o.formatexpr = [[v:lua.require("conform").formatexpr()]]
     end,
   },
   {
@@ -191,7 +203,7 @@ local plugins = {
             },
             selection_modes = {
               ["@parameter.outer"] = "v", -- charwise
-              ["@function.outer"] = "V", -- linewise
+              ["@function.outer"] = "V",  -- linewise
               ["@class.outer"] = "<c-v>", -- blockwise
             },
           },
