@@ -4,7 +4,6 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "<leader>op", "<cmd> Telescope neovim-project history<CR>", { desc = "Open recent project" })
 map("n", "<leader>fp", "<cmd> Telescope neovim-project discover<CR>", { desc = "Discover projects" })
@@ -23,3 +22,5 @@ map("n", "<F8>", '<cmd> lua require("dap").step_out()<CR>', { desc = "Step out" 
 map("n", "<leader>db", '<cmd> lua require("dap").toggle_breakpoint()<CR>', { desc = "Toggle breakpoint" })
 map("n", "<leader>u", "<cmd> URLOpenUnderCursor<CR>", { desc = "Open URL under cursor" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+
+map("i", "<C-J>", "copilot#Accept('<CR>')", { expr = true, silent = true, replace_keycodes = false })

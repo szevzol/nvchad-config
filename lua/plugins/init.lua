@@ -7,7 +7,7 @@ local plugins = {
         "isort",
         "black",
         "markdownlint",
-        "rust_analyzer"
+        "rust_analyzer",
       },
     },
   },
@@ -33,7 +33,7 @@ local plugins = {
       format_on_save = {
         lsp_fallback = true,
         timeout_ms = 5000,
-      }
+      },
     },
     event = { "BufWritePre" },
     init = function()
@@ -64,8 +64,8 @@ local plugins = {
       vim.keymap.set("n", "<leader>ll", function()
         lint.try_lint()
       end, { desc = "Trigger linting for current file" })
-      require("lint").linters.pylint.cmd = "python"
-      require("lint").linters.pylint.args = { "-m", "pylint", "-f", "json" }
+      -- require("lint").linters.pylint.cmd = "python"
+      -- require("lint").linters.pylint.args = { "-m", "pylint", "-f", "json" }
     end,
   },
   {
@@ -203,7 +203,7 @@ local plugins = {
             },
             selection_modes = {
               ["@parameter.outer"] = "v", -- charwise
-              ["@function.outer"] = "V",  -- linewise
+              ["@function.outer"] = "V", -- linewise
               ["@class.outer"] = "<c-v>", -- blockwise
             },
           },
@@ -274,7 +274,28 @@ local plugins = {
     end,
   },
   {
-    "simrat39/rust-tools.nvim"
-  }
+    "simrat39/rust-tools.nvim",
+  },
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+    end,
+    lazy = false,
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+    lazy = false,
+  },
 }
 return plugins
